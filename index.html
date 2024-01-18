@@ -27,7 +27,14 @@
         '/.*/_sidebar.md': '/_sidebar.md',
       },
       plugins: [
-        EditOnGithubPlugin.create("https://github.com/leveryd-kb/java-sec-document/blob/main/")
+        function(hook, vm) {
+          hook.beforeEach(function(content, next) {
+            content = "# <!-- {docsify-ignore-all} --> \n" + content;
+            console.log(content);
+            next(content);
+          });
+        },
+        EditOnGithubPlugin.create("https://github.com/leveryd-kb/java-sec-document/blob/main/"),
       ]
     }
   </script>
